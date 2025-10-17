@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/</item>
+        <item>@font/agbalumo</item>
+        <item>@font/aldrich</item>
+        <item>@font/alumni_sans_collegiate_one</item>
+        <item>@font/anta</item>
+        <item>@font/atomic_age</item>
+        <item>@font/bhutuka_expanded_one</item>
+        <item>@font/bungee</item>
+        <item>@font/bungee_outline</item>
+        <item>@font/monoton</item>
+        <item>@font/workbench</item>
+    </array>
+</resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="night_overlay">#660A0F2B</color>
+    <color name="card_bg_start">#1A1F3A</color>
+    <color name="card_bg_end">#0F1530</color>
+    <color name="card_stroke">#334B6E</color>
+    <color name="shadow_tint">#80000000</color>
+
+    <!-- Primarios inspirados en la espada -->
+    <color name="primary_teal">#19D3E6</color>
+    <color name="primary_teal_dark">#11A7B7</color>
+    <color name="accent_glow">#FFEE88</color>
+
+    <!-- Texto -->
+    <color name="on_primary">#FFFFFFFF</color>
+    <color name="text_primary">#E6FFFFFF</color>
+    <color name="text_secondary">#99FFFFFF</color>
+    <color name="text_dark">#333333</color>
+
+    <!-- Inputs -->
+    <color name="input_bg">#331A244B</color>
+    <color name="input_stroke">#3A6FA7</color>
+    <color name="input_stroke_focus">#6AD7FF</color>
+
+    <!-- Google btn -->
+    <color name="google_bg">#FFFFFFFF</color>
+    <color name="google_stroke">#22000000</color>
+    <color name="ripple_light">#1FFFFFFF</color>
+    <color name="ripple_dark">#33FFFFFF</color>
+
+</resources>

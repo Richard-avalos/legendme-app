@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg2"
+    tools:context=".ui.login.LoginActivity">
+
+    <!-- Scrim para mejorar contraste sobre el bg -->
+
+    <!-- Contenedor principal (responsive) -->
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clipToOutline="true"
+        android:clipToPadding="false"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="28dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.18"
+        app:layout_goneMarginTop="24dp"
+        app:layout_goneMarginBottom="24dp"
+        app:layout_constraintWidth_max="520dp"
+        app:layout_constraintWidth_min="280dp">
+
+        <!-- Logo (se adapta al ancho disponible) -->
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="LegendMe Logo"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/logo" />
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            android:fontFamily="@font/aldrich"
+            android:text="Inicia tu aventura"
+            android:textColor="@color/text_secondary"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <!-- Campo de usuario -->
+        <EditText
+            android:id="@+id/input_username"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:autofillHints="username"
+            android:background="@drawable/edit_text_bg"
+            android:drawableStart="@null"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/text_secondary"
+            android:hint="Usuario"
+            android:importantForAutofill="yes"
+            android:inputType="text"
+            android:paddingHorizontal="16dp"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary"
+            />
+
+        <!-- Campo de contraseña -->
+        <EditText
+            android:id="@+id/input_password"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="12dp"
+            android:autofillHints="password"
+            android:background="@drawable/edit_text_bg"
+            android:drawableStart="@null"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/text_secondary"
+            android:hint="Contraseña"
+            android:inputType="textPassword"
+            android:paddingHorizontal="16dp"
+            android:textColor="@color/text_primary"
+            android:textColorHint="@color/text_secondary" />
+
+        <!-- Botón principal -->
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/btn_primary_bg"
+            android:backgroundTint="@null"
+            android:fontFamily="sans-serif-medium"
+            android:text="Entrar"
+            android:textAllCaps="false"
+            android:textColor="@color/on_primary"
+            android:textSize="16sp"
+            app:backgroundTint="@null" />
+
+        <!-- Separador -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="14dp"
+            android:text="o continúa con"
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp" />
+
+        <!-- Dentro de tu ConstraintLayout/parent -->
+        <LinearLayout
+            android:id="@+id/btn_google"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/btn_google_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:contentDescription="@string/sign_in_with_google"
+                android:importantForAccessibility="no"
+                android:src="@drawable/common_google_signin_btn_icon_dark" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="@string/sign_in_with_google"
+                android:textColor="@color/google_bg"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+        <View
+            android:id="@+id/scrim"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/night_overlay" />
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
