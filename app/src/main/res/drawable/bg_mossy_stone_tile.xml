@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Patrón de piedra musgosa repetido -->
+    <item>
+        <bitmap
+            android:src="@drawable/test_bg"
+            android:tileMode="repeat" />
+    </item>
+
+    <!-- Viñeta suave -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:centerX="10%"
+                android:centerY="10%"
+                android:endColor="#44000000"
+                android:gradientRadius="900dp"
+                android:startColor="#00000000"
+                android:type="radial" />
+        </shape>
+    </item>
+
+    <!-- Humedad inferior (opcional) -->
+    <item android:gravity="bottom">
+        <shape android:shape="rectangle">
+            <size android:height="200dp" />
+            <gradient
+                android:angle="90"
+                android:endColor="#1A000000"
+                android:startColor="#00000000"
+                android:type="linear" />
+        </shape>
+    </item>
+
+</layer-list>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardMission"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardCornerRadius="20dp"
+    app:cardUseCompatPadding="false"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/azul_bosque"
+    app:strokeColor="@color/azul_neblina"
+    app:strokeWidth="1dp"
+    app:shapeAppearanceOverlay="@style/LegendMe.Shape.Rounded2XL">
+
+    <!-- Fondo medieval -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="124dp"
+        android:background="@android:color/transparent"
+        android:paddingStart="8dp"
+        android:paddingTop="14dp"
+        android:paddingEnd="14dp"
+        android:paddingBottom="14dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Insignia/espada -->
+            <ImageView
+                android:id="@+id/ivIcon"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:contentDescription="@string/content_desc_mission_icon"
+                android:src="@drawable/sword_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/naranja_brasa" />
+
+            <!-- Título -->
+            <TextView
+                android:id="@+id/tvTitle"
+                style="@style/LegendMe.Text.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/ink_on_stone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivIcon"
+                app:layout_constraintTop_toTopOf="@id/ivIcon"
+                tools:text="Forjar la Espada de Luz" />
+
+            <!-- Descripción -->
+            <TextView
+                android:id="@+id/tvDescription"
+                style="@style/LegendMe.Text.Body"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:textColor="@color/azul_humo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tvTitle"
+                app:layout_constraintTop_toBottomOf="@id/tvTitle"
+                tools:text="Recoge cristales de maná en el Bosque de Estrellas y entrégalos en la forja." />
+
+            <!-- Chips de meta/estado alineadas a la izquierda -->
+            <LinearLayout
+                android:id="@+id/chipsRow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvDescription">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipXp"
+                    style="@style/LegendMe.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    tools:text="100 XP" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipDifficulty"
+                    style="@style/LegendMe.Chip.Secondary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    tools:text="Media" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipStatus"
+                    style="@style/LegendMe.Chip.Success"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    tools:text="En progreso" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</com.google.android.material.card.MaterialCardView>

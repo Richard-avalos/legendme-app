@@ -53,5 +53,8 @@ dependencies {
     implementation libs.converter.gson
     implementation libs.okhttp.v4120
 
+    implementation libs.logging.interceptor
 
+    // RecyclerView
+    implementation libs.recyclerview
 }

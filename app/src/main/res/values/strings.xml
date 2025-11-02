@@ -1,7 +1,25 @@
 <resources>
     <string name="app_name">legendme-app</string>
     <string name="server_client_id">1020419851357-d2bggq7tach58ba8b6ptq0cpjuqr1icm.apps.googleusercontent.com</string>
-    <string name="backend_base_url">http://10.0.2.2:8081</string>
+    <string name="backend_base_url">http://10.0.2.2</string>
     <string name="sign_in_with_google">Iniciar sesión con Google</string>
+    <string name="content_desc_mission_icon">Ícono de misión</string>
+    <string name="missions_title">Mis misiones</string>
+    <string name="missions_swipe_hint">(Desliza para ver más)</string>
+    <string name="content_desc_toolbar_dashboard">Barra superior de LegendMe</string>
+    <string name="content_desc_background">Imagen de fondo de la pantalla</string>
 
+    <!-- Strings necesarias para el DrawerToggle -->
+    <string name="open_drawer">Abrir menú</string>
+    <string name="close_drawer">Cerrar menú</string>
+
+    <!-- Strings para el Navigation Drawer -->
+    <string name="nav_profile">Perfil</string>
+    <string name="nav_settings">Ajustes</string>
+    <string name="nav_logout">Cerrar sesión</string>
+
+    <!-- Formato para mostrar XP en chips -->
+    <string name="xp_format">%d XP</string>
+    <!-- Placeholder para chips vacíos -->
+    <string name="placeholder_dash">—</string>
 </resources>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ================= THEME (opcional pero recomendado) ================= -->
+    <!-- Si ya tienes un tema, deja el tuyo y solo añade los estilos base de abajo -->
+    <style name="LegendMe" parent="Theme.Material3.DynamicColors.DayNight">
+        <!-- Colores y estilos globales opcionales -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">?attr/colorSurface</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <!-- ================= BASES QUE FALTABAN ================= -->
+    <!-- Base "marker" para agrupar text styles -->
+    <style name="LegendMe.Text" />
+    <!-- Base "marker" para agrupar shape overlays -->
+    <style name="LegendMe.Shape" />
+
+    <!-- ================= SHAPES ================= -->
+    <!-- Overlay de esquinas 2XL. Úsalo con app:shapeAppearanceOverlay -->
+    <style name="LegendMe.Shape.Rounded2XL" parent="LegendMe.Shape">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+    </style>
+
+    <!-- ================= TEXTOS ================= -->
+    <style name="LegendMe.Text.Title">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/cinzel_decorative</item> <!-- o Roboto/Serif si no la tienes -->
+    </style>
+
+    <style name="LegendMe.Text.Body">
+        <item name="android:textSize">13sp</item>
+        <item name="android:fontFamily">serif</item>
+    </style>
+
+    <style name="LegendMe.Text.Meta" parent="LegendMe.Text">
+        <item name="android:textColor">#CCFFFFFF</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <!-- ================= CHIPS ================= -->
+    <style name="LegendMe.Chip">
+        <!-- Chip por defecto: fondo claro, borde suave, texto oscuro -->
+        <item name="chipBackgroundColor">@color/blanco_lunar</item>
+        <item name="chipStrokeColor">@color/azul_neblina</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="android:textColor">@color/ink_on_parchment</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="LegendMe.Chip.Secondary">
+        <!-- Chips secundarias (dificultad): fondo azul neblina, texto claro -->
+        <item name="chipBackgroundColor">@color/azul_neblina</item>
+        <item name="chipStrokeColor">@color/azul_bosque</item>
+        <item name="android:textColor">@color/blanco_lunar</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="LegendMe.Chip.Success">
+        <!-- Chips de estado/éxito: acento cálido (rojo fogata) con texto blanco -->
+        <item name="chipBackgroundColor">@color/rojo_fogata</item>
+        <item name="chipStrokeColor">@color/naranja_brasa</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <!-- ================= MATERIAL CARD STYLE (global) ================= -->
+    <style name="LegendMe.MaterialCard" parent="Widget.MaterialComponents.CardView">
+        <!-- Forzar color de background y stroke para que coincida con la paleta -->
+        <item name="cardBackgroundColor">@color/azul_bosque</item>
+        <item name="strokeColor">@color/azul_neblina</item>
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardElevation">4dp</item>
+    </style>
+
+</resources>

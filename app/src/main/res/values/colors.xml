@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Paleta nueva: Tonos principales -->
+    <color name="azul_abismo">#0B1A2E</color> <!-- Fondo principal / root -->
+    <color name="azul_medianoche">#152D4A</color> <!-- Toolbar / tarjetas secundarias -->
+    <color name="azul_bosque">#1E3A56</color> <!-- Listas / RecyclerView -->
+    <color name="azul_neblina">#304B68</color> <!-- Bordes suaves / overlays -->
+
+    <!-- Acentos cálidos -->
+    <color name="rojo_fogata">#FF4C2C</color> <!-- Botones primarios -->
+    <color name="naranja_brasa">#FF7B3A</color> <!-- Chips activos / íconos -->
+    <color name="amarillo_resplandor">#FFD36B</color> <!-- Foco / hover -->
+
+    <!-- Neutros de apoyo (texto y estructura) -->
+    <color name="gris_piedra">#6C7A89</color> <!-- Texto secundario -->
+    <color name="azul_humo">#A8B3C2</color> <!-- Texto desactivado / hints -->
+    <color name="blanco_lunar">#E6EEF8</color> <!-- Texto principal -->
+    <color name="blanco_estrella">#FDFCFB</color> <!-- Íconos o detalles sobre fondo oscuro -->
+
+    <!-- Mantener colores anteriores por compatibilidad, pero algunos apuntan a la nueva paleta -->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -8,20 +26,20 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="night_overlay">#660A0F2B</color>
-    <color name="card_bg_start">#1A1F3A</color>
-    <color name="card_bg_end">#0F1530</color>
-    <color name="card_stroke">#334B6E</color>
+    <color name="card_bg_start">#1E3A56</color> <!-- azul_bosque -->
+    <color name="card_bg_end">#0B1A2E</color> <!-- azul_abismo -->
+    <color name="card_stroke">#304B68</color> <!-- azul_neblina -->
     <color name="shadow_tint">#80000000</color>
 
-    <!-- Primarios inspirados en la espada -->
+    <!-- Primarios (antiguos quedan, pero orientados a la nueva paleta) -->
     <color name="primary_teal">#19D3E6</color>
     <color name="primary_teal_dark">#11A7B7</color>
     <color name="accent_glow">#FFEE88</color>
 
-    <!-- Texto -->
+    <!-- Texto: apuntan a la paleta nueva -->
     <color name="on_primary">#FFFFFFFF</color>
-    <color name="text_primary">#E6FFFFFF</color>
-    <color name="text_secondary">#99FFFFFF</color>
+    <color name="text_primary">#E6EEF8</color> <!-- blanco_lunar -->
+    <color name="text_secondary">#A8B3C2</color> <!-- azul_humo -->
     <color name="text_dark">#333333</color>
 
     <!-- Inputs -->
@@ -35,4 +53,48 @@
     <color name="ripple_light">#1FFFFFFF</color>
     <color name="ripple_dark">#33FFFFFF</color>
 
+    <color name="legendme_teal">#3DD5D0</color>
+
+    <!-- FIX: valor válido -->
+    <color name="ink_on_parchment">#1B1412</color>
+
+    <!-- PIEDRA (conservados) -->
+    <color name="stone_900">#2F2A28</color>
+    <color name="stone_700">#4A403B</color>
+    <color name="stone_600">#5F554F</color>
+    <color name="stone_500">#6B5E55</color>
+    <color name="stone_300">#8A7C71</color>
+    <color name="stone_100">#C8B7A6</color>
+
+    <!-- HIERRO -->
+    <color name="iron_700">#3D3A36</color>
+    <color name="iron_500">#56514B</color>
+    <color name="iron_300">#6E685F</color>
+
+    <!-- PERGAMINO -->
+    <color name="parchment_50">#F2E8D7</color>
+    <color name="parchment_100">#E8DCC7</color>
+    <color name="parchment_200">#D6C8B1</color>
+    <color name="parchment_300">#C4B49A</color>
+    <color name="parchment_stroke">#A8926F</color>
+
+    <!-- MUSGO -->
+    <color name="moss_600">#436446</color>
+    <color name="moss_400">#6E8A64</color>
+
+    <!-- Tintas -->
+    <color name="ink">#1B1412</color>
+    <color name="ink_muted">#4D4039</color>
+
+    <!-- Texto sobre piedra: actualizar para contraste con fondo oscuro -->
+    <color name="ink_on_stone">#E6EEF8</color> <!-- blanco_lunar -->
+    <color name="ink_on_stone_muted">#C9BCAA</color>
+
+    <!-- Util -->
+    <color name="shadow_40">#66000000</color>
+
+    <!-- Colores usados por el toolbar/tema apuntando a la paleta nueva -->
+    <color name="toolbar_gray_dark">#152D4A</color> <!-- azul_medianoche -->
+    <color name="toolbar_gray">#152D4A</color>
+    <color name="toolbar_gray_contrast">#FDFCFB</color> <!-- blanco_estrella -->
 </resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Gradiente base: azul_bosque -> azul_neblina -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="@color/azul_bosque"
+                android:endColor="@color/azul_neblina"
+                android:angle="270" />
+        </shape>
+    </item>
+
+    <!-- Sutil sombreado superior para dar profundidad -->
+    <item>
+        <shape android:shape="rectangle">
+            <size android:height="124dp" />
+            <solid android:color="#1A000000" />
+            <corners android:radius="0dp" />
+            <padding android:top="0dp" />
+        </shape>
+    </item>
+
+</layer-list>

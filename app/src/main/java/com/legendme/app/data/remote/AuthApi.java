@@ -20,6 +20,6 @@ public interface  AuthApi {
         String name;
     }
 
-    @POST("legendme/login/google")
+    @POST("/login/google")
     Call<AuthResponse> loginWithGoogle(@Body GoogleLoginRequest body);
 }

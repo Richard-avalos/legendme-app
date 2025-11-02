@@ -1,20 +1,19 @@
 package com.legendme.app.ui.login;
 
 import android.content.Intent;
-import android.credentials.CredentialManager;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
-
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.legendme.app.R;
 import com.legendme.app.di.AppContainer;
+import com.legendme.app.domain.model.AuthResult;
 import com.legendme.app.presentation.login.LoginUiState;
+import com.legendme.app.ui.dashboard.DashboardActivity;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -45,12 +44,25 @@ public class LoginActivity extends AppCompatActivity {
             @Override public void onChanged(LoginUiState s) {
                 if (s.loading) {
                     // muestra loader
-                } else if (s.message != null) {
-                    Toast.makeText(LoginActivity.this, s.message, Toast.LENGTH_SHORT).show();
-                    // si éxito, navega al Home
-                    // startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                    // finish();
+                } else if (s.getMessage() != null) {
+                    Toast.makeText(LoginActivity.this, s.getMessage(), Toast.LENGTH_SHORT).show();
                 }
+
+                AuthResult result = s.getResult();
+                if (result != null) {
+                    SharedPreferences prefs = getSharedPreferences("legendme_auth", MODE_PRIVATE);
+                    prefs.edit()
+                            .putString("accessToken", result.AccessToken())
+                            .putString("refreshToken", result.refreshToken())
+                            .putString("userId", result.userId())
+                            .putString("email", result.email())
+                            .putString("name", result.name())
+                            .apply();
+
+                    startActivity(new Intent(LoginActivity.this, com.legendme.app.ui.dashboard.DashboardActivity.class));
+                    finish();
+                }
+
             }
         });
 
