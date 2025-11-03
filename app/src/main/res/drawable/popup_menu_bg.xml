@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Fondo más claro que azul_bosque, bueno para texto blanco -->
+    <solid android:color="@color/azul_neblina" />
+
+    <corners android:radius="10dp" />
+
+    <padding
+        android:left="8dp"
+        android:top="6dp"
+        android:right="8dp"
+        android:bottom="6dp" />
+
+</shape>

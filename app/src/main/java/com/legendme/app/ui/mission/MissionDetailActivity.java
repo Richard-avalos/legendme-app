@@ -60,6 +60,7 @@ public class MissionDetailActivity extends AppCompatActivity {
     private TextView tvProgressPercent;
     private TextView tvXp; // destacamos el XP
     private FloatingActionButton fabStartMission; // FAB para iniciar misión
+    private ImageButton btnOptions; // Botón de opciones (menú desplegable)
 
     // Botón editar y estado
     private MaterialButton btnEditMission;
@@ -106,7 +107,12 @@ public class MissionDetailActivity extends AppCompatActivity {
         btnPauseMission = findViewById(R.id.btnPauseMission); // enlazado
         btnCancelMission = findViewById(R.id.btnCancelMission);
         btnCompleteMission = findViewById(R.id.btnCompleteMission);
+        btnOptions = findViewById(R.id.btnOptions); // botón de menú desplegable
 
+        // Configurar el botón de opciones para mostrar menú desplegable
+        if (btnOptions != null) {
+            btnOptions.setOnClickListener(v -> showOptionsMenu(v));
+        }
 
         // listener del FAB: dispara la misma acción que el botón iniciar
         if (fabStartMission != null) {
@@ -185,6 +191,90 @@ public class MissionDetailActivity extends AppCompatActivity {
 
         // Cargar datos iniciales
         loadMission(missionId, accessToken);
+    }
+
+    /**
+     * Muestra el menú desplegable con las acciones disponibles
+     */
+    private void showOptionsMenu(View anchorView) {
+        // Inflar menú desde recursos para facilitar localización y estilos
+        PopupMenu popupMenu = new PopupMenu(this, anchorView);
+        popupMenu.getMenuInflater().inflate(R.menu.menu_mission_options, popupMenu.getMenu());
+
+        // Ajustar visibilidad de items según estado actual de botones
+        android.view.Menu menu = popupMenu.getMenu();
+        android.view.MenuItem itStart = menu.findItem(R.id.action_start);
+        android.view.MenuItem itPause = menu.findItem(R.id.action_pause);
+        android.view.MenuItem itComplete = menu.findItem(R.id.action_complete);
+        android.view.MenuItem itCancel = menu.findItem(R.id.action_cancel);
+        android.view.MenuItem itEdit = menu.findItem(R.id.action_edit);
+
+        if (itStart != null) itStart.setVisible(btnStartMission != null && btnStartMission.getVisibility() == View.VISIBLE);
+        if (itPause != null) itPause.setVisible(btnPauseMission != null && btnPauseMission.getVisibility() == View.VISIBLE);
+        if (itComplete != null) itComplete.setVisible(btnCompleteMission != null && btnCompleteMission.getVisibility() == View.VISIBLE);
+        if (itCancel != null) itCancel.setVisible(btnCancelMission != null && btnCancelMission.getVisibility() == View.VISIBLE);
+        if (itEdit != null) itEdit.setVisible(btnEditMission != null && btnEditMission.getVisibility() != View.GONE);
+
+        // Aplicar títulos con color claro para asegurar contraste
+        int textColor = ContextCompat.getColor(this, R.color.blanco_lunar);
+        for (int i = 0; i < menu.size(); i++) {
+            android.view.MenuItem mi = menu.getItem(i);
+            if (mi != null && mi.isVisible()) {
+                android.text.SpannableString s = new android.text.SpannableString(mi.getTitle());
+                s.setSpan(new android.text.style.ForegroundColorSpan(textColor), 0, s.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                mi.setTitle(s);
+            }
+        }
+
+        // Listener de selección
+        popupMenu.setOnMenuItemClickListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.action_start) {
+                if (btnStartMission != null) { btnStartMission.setEnabled(false); performStartMission(); }
+                return true;
+            } else if (id == R.id.action_pause) {
+                if (btnPauseMission != null) { btnPauseMission.setEnabled(false); if (btnStartMission!=null) btnStartMission.setEnabled(false); performPauseMission(); }
+                return true;
+            } else if (id == R.id.action_complete) {
+                if (btnCompleteMission != null) { btnCompleteMission.setEnabled(false); performCompleteMission(); }
+                return true;
+            } else if (id == R.id.action_cancel) {
+                if (btnCancelMission != null) { btnCancelMission.setEnabled(false); performCancelMission(); }
+                return true;
+            } else if (id == R.id.action_edit) {
+                if (btnEditMission != null) {
+                    try { android.content.Intent it = new android.content.Intent(MissionDetailActivity.this, MissionEditActivity.class); it.putExtra(EXTRA_MISSION_ID, missionId); startActivityForResult(it, REQ_EDIT); }
+                    catch (Exception e){ Log.w(TAG, "No se pudo lanzar edición: " + e.getMessage()); Toast.makeText(MissionDetailActivity.this, "No se puede abrir editor", Toast.LENGTH_SHORT).show(); }
+                }
+                return true;
+            }
+            return false;
+        });
+
+        // Mostrar popup y luego aplicar fondo drawable mediante reflexión (compatibilidad amplia)
+        popupMenu.show();
+        try {
+            java.lang.reflect.Field popupField = PopupMenu.class.getDeclaredField("mPopup");
+            popupField.setAccessible(true);
+            Object menuPopupHelper = popupField.get(popupMenu);
+            if (menuPopupHelper != null) {
+                java.lang.reflect.Method setBg = menuPopupHelper.getClass().getMethod("setPopupBackgroundDrawable", android.graphics.drawable.Drawable.class);
+                android.graphics.drawable.Drawable bg = ContextCompat.getDrawable(this, R.drawable.popup_menu_bg);
+                setBg.invoke(menuPopupHelper, bg);
+            }
+        } catch (Exception e) {
+            // fallback: intentar acceder al ListView interno y poner background
+            try {
+                java.lang.reflect.Field popupField = PopupMenu.class.getDeclaredField("mPopup");
+                popupField.setAccessible(true);
+                Object menuPopupHelper = popupField.get(popupMenu);
+                java.lang.reflect.Method getListView = menuPopupHelper.getClass().getMethod("getListView");
+                android.view.View listView = (android.view.View) getListView.invoke(menuPopupHelper);
+                if (listView != null) listView.setBackgroundResource(R.drawable.popup_menu_bg);
+            } catch (Exception ex) {
+                Log.w(TAG, "No se pudo aplicar fondo personalizado al PopupMenu: " + ex.getMessage());
+            }
+        }
     }
 
     @Override
@@ -579,6 +669,16 @@ public class MissionDetailActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.w(TAG, "No se pudo ajustar visibilidad de botones: " + e.getMessage());
         }
+
+        // Mostrar/ocultar botón de opciones según si hay acciones disponibles
+        if (btnOptions != null) {
+            boolean hasActions = (btnStartMission != null && btnStartMission.getVisibility() == View.VISIBLE) ||
+                    (btnPauseMission != null && btnPauseMission.getVisibility() == View.VISIBLE) ||
+                    (btnCompleteMission != null && btnCompleteMission.getVisibility() == View.VISIBLE) ||
+                    (btnCancelMission != null && btnCancelMission.getVisibility() == View.VISIBLE) ||
+                    (btnEditMission != null);
+            btnOptions.setVisibility(hasActions ? View.VISIBLE : View.GONE);
+        }
     }
 
     // Lanza la petición PATCH /missions/{id}/start y muestra un Toast "mision iniciada" en éxito
@@ -741,7 +841,6 @@ public class MissionDetailActivity extends AppCompatActivity {
         }
     }
 
-
-
     private static String safe(String s) { return s == null ? "" : s; }
 }
+

@@ -79,24 +79,49 @@
                         android:orientation="vertical"
                         android:padding="16dp">
 
-                        <ProgressBar
-                            android:id="@+id/progress"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:visibility="visible" />
-
-                        <!-- TITULO: centrado y más grande -->
-                        <TextView
-                            android:id="@+id/tvTitle"
+                        <!-- Header con título y botón de opciones -->
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:textStyle="bold"
-                            android:textSize="26sp"
-                            android:textColor="@color/blanco_lunar"
-                            android:layout_marginTop="12dp"
-                            android:visibility="gone" />
+                            android:layout_height="48dp"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="12dp">
+
+                            <ProgressBar
+                                android:id="@+id/progress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:visibility="visible" />
+
+                            <!-- TITULO: ahora dentro del header para estar al mismo nivel que el botón -->
+                            <TextView
+                                android:id="@+id/tvTitle"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:includeFontPadding="false"
+                                android:textStyle="bold"
+                                android:textSize="20sp"
+                                android:textColor="@color/blanco_lunar"
+                                android:paddingStart="8dp"
+                                android:paddingEnd="8dp"
+                                android:visibility="gone" />
+
+                            <!-- Botón de 3 puntos (menú de opciones) -->
+                            <ImageButton
+                                android:id="@+id/btnOptions"
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:contentDescription="@string/menu_options"
+                                android:scaleType="centerInside"
+                                android:src="@drawable/ic_more_vert"
+                                android:visibility="gone"
+                                app:tint="@color/blanco_lunar" />
+
+                        </LinearLayout>
 
                         <!-- XP destacado -->
                         <TextView
@@ -206,8 +231,7 @@
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
-        <!-- bottomActions: ahora hijo del CoordinatorLayout (anclado al scroll) -->
-        <!-- Nota: DrawerLayout no permite gravity bottom en hijos que no sean drawers -->
+        <!-- bottomActions: ahora oculto, se usará menú desplegable -->
         <LinearLayout
             android:id="@+id/bottomActions"
             android:layout_width="match_parent"
@@ -219,7 +243,7 @@
             android:paddingTop="8dp"
             android:background="@color/azul_medianoche"
             android:elevation="8dp"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_anchor="@id/scroll"
             app:layout_anchorGravity="bottom|center">
 
@@ -231,8 +255,6 @@
                 style="@style/Widget.MaterialComponents.Button"
                 android:text="@string/start_mission"
                 android:textColor="@color/blanco_lunar" />
-
-
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPauseMission"
@@ -256,7 +278,6 @@
                 app:backgroundTint="@color/verde_exito"
                 app:iconGravity="start"
                 app:iconPadding="8dp"/>
-
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnCancelMission"

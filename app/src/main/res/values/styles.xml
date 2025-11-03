@@ -76,4 +76,19 @@
         <item name="cardElevation">4dp</item>
     </style>
 
+    <!-- ================= POPUP MENU ================= -->
+    <!-- Style para PopupMenu personalizado -->
+    <style name="LegendMe.PopupMenu" parent="ThemeOverlay.AppCompat">
+        <item name="android:popupMenuStyle">@style/Widget.LegendMe.PopupMenu</item>
+    </style>
+
+    <style name="Widget.LegendMe.PopupMenu" parent="Widget.AppCompat.PopupMenu">
+        <!-- Fondo del popup -->
+        <item name="android:popupBackground">@drawable/popup_menu_bg</item>
+        <!-- Color del texto dentro del popup -->
+        <item name="android:textColor">@color/blanco_lunar</item>
+        <!-- Tamaño por defecto de texto -->
+        <item name="android:textSize">14sp</item>
+    </style>
+
 </resources>
