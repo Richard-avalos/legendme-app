@@ -32,6 +32,15 @@
         <activity
             android:name=".ui.dashboard.DashboardActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".ui.mission.MissionDetailActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.mission.MissionEditActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

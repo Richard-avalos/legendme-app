@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_start"
+        android:title="@string/start_mission" />
+    <item
+        android:id="@+id/action_pause"
+        android:title="@string/pause_mission" />
+    <item
+        android:id="@+id/action_complete"
+        android:title="@string/complete_mission" />
+    <item
+        android:id="@+id/action_cancel"
+        android:title="@string/cancel_mission" />
+    <item
+        android:id="@+id/action_edit"
+        android:title="@string/edit_label" />
+</menu>
+
+

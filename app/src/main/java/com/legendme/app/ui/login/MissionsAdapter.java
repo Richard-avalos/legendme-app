@@ -1,5 +1,6 @@
 package com.legendme.app.ui.login;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,6 +77,16 @@ public class MissionsAdapter extends RecyclerView.Adapter<MissionsAdapter.VH> {
             h.chipStatus.setText(status);
             h.chipStatus.setAlpha(1f);
         }
+
+        // Click: abrir detalle pasando el id (usamos setClassName para evitar dependencia directa)
+        h.itemView.setOnClickListener(v -> {
+            if (m.id != null) {
+                Intent i = new Intent();
+                i.setClassName(v.getContext(), "com.legendme.app.ui.mission.MissionDetailActivity");
+                i.putExtra("extra_mission_id", m.id);
+                v.getContext().startActivity(i);
+            }
+        });
     }
 
     // Considera varios placeholders que se usan como marcadores vacíos

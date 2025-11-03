@@ -11,6 +11,11 @@
     <color name="naranja_brasa">#FF7B3A</color> <!-- Chips activos / íconos -->
     <color name="amarillo_resplandor">#FFD36B</color> <!-- Foco / hover -->
 
+    <!-- Colores añadidos para estado/progreso -->
+    <color name="verde_exito">#4CAF50</color>
+    <color name="rojo_alerta">#E53935</color>
+    <color name="gris_neutro">#9AA0A6</color>
+
     <!-- Neutros de apoyo (texto y estructura) -->
     <color name="gris_piedra">#6C7A89</color> <!-- Texto secundario -->
     <color name="azul_humo">#A8B3C2</color> <!-- Texto desactivado / hints -->

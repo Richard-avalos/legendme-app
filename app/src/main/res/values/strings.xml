@@ -22,4 +22,31 @@
     <string name="xp_format">%d XP</string>
     <!-- Placeholder para chips vacíos -->
     <string name="placeholder_dash">—</string>
+
+    <!-- Nuevas cadenas para detalle de misión -->
+    <string name="status_label">Estado</string>
+    <string name="progress_percent">%d%%</string>
+
+    <!-- Etiquetas para detalle de misión -->
+    <string name="lbl_xp">XP: </string>
+    <string name="lbl_difficulty">Dificultad: </string>
+    <string name="lbl_state">Estado: </string>
+    <string name="lbl_due">Fecha límite: </string>
+    <string name="lbl_created">Fecha de creación: </string>
+    <string name="lbl_start">Inicio: </string>
+    <string name="lbl_completed">Completado: </string>
+
+    <!-- Cadenas añadidas para edición de misión -->
+    <string name="edit_label">Editar</string>
+    <string name="title_label">Título</string>
+    <string name="description_label">Descripción</string>
+    <string name="category_label">Categoría</string>
+    <string name="difficulty_label">Dificultad</string>
+    <string name="streak_group_label">Grupo de racha</string>
+    <string name="save_label">Guardar</string>
+    <string name="start_mission">Iniciar misión</string>
+    <string name="pause_mission">Pausar misión</string>
+    <string name="cancel_mission">Cancelar misión</string>
+    <string name="complete_mission">Completar misión</string>
+    <string name="menu_options">Opciones</string>
 </resources>
