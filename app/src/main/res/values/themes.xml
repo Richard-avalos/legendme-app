@@ -12,15 +12,23 @@
         <!-- Surface / Background para componentes como Card -->
         <item name="colorSurface">@color/azul_bosque</item>
         <item name="colorOnSurface">@color/blanco_lunar</item>
+        <item name="colorOnSurfaceVariant">@color/text_secondary</item>
         <item name="android:colorBackground">@color/azul_abismo</item>
         <item name="colorOnBackground">@color/blanco_lunar</item>
 
         <!-- Evitar overlay de elevación que oscurece colores en temas oscuros -->
         <item name="elevationOverlayEnabled">false</item>
 
+        <!-- Atributos Material que podían faltar en el tema -->
+        <item name="colorOutline">@color/card_stroke</item>
+        <item name="colorSurfaceVariant">@color/card_bg_end</item>
+        <item name="colorPrimaryContainer">@color/primary_teal</item>
+
         <!-- Forzar estilo global de MaterialCardView -->
         <item name="materialCardViewStyle">@style/LegendMe.MaterialCard</item>
-        <!-- Forzar estilo global de Chips -->
+
+        <!-- Atributos para Chips (evitan NullPointerException al inflar) -->
+        <item name="chipStyle">@style/Widget.MaterialComponents.Chip.Action</item>
 
         <!-- Status/navigation bar -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>

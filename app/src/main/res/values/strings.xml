@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">legendme-app</string>
     <string name="server_client_id">1020419851357-d2bggq7tach58ba8b6ptq0cpjuqr1icm.apps.googleusercontent.com</string>
-    <string name="backend_base_url">http://10.0.2.2</string>
+    <string name="backend_base_url">https://legendme.click</string>
     <string name="sign_in_with_google">Iniciar sesión con Google</string>
     <string name="content_desc_mission_icon">Ícono de misión</string>
     <string name="missions_title">Mis misiones</string>
@@ -49,4 +49,20 @@
     <string name="cancel_mission">Cancelar misión</string>
     <string name="complete_mission">Completar misión</string>
     <string name="menu_options">Opciones</string>
+
+    <!-- String para el FloatingActionButton crear misión -->
+    <string name="create_mission">Crear misión</string>
+
+    <!-- MissionCreateActivity strings -->
+    <string name="label_category">Categoría</string>
+    <string name="label_title">Título</string>
+    <string name="hint_title">Ej. Correr 5km</string>
+    <string name="label_description">Descripción</string>
+    <string name="hint_description">Descripción de la misión</string>
+    <string name="label_due">Fecha y hora límite</string>
+    <string name="select_due">Seleccionar fecha y hora</string>
+    <string name="label_difficulty">Dificultad</string>
+    <string name="label_streak_group">Streak Group</string>
+    <string name="hint_streak_group">daily_run</string>
+    <string name="btn_create_mission">Crear misión</string>
 </resources>

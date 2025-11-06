@@ -34,6 +34,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".ui.mission.MissionCreateActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".ui.mission.MissionDetailActivity"
             android:exported="false" />
 

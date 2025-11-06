@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/test_bg"
+    android:fillViewport="true"
+    android:padding="16dp"
+    tools:context=".ui.mission.MissionCreateActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <!-- Card del formulario -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_mission_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="10dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="?attr/colorOutline"
+            app:cardBackgroundColor="?attr/colorSurface">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <!-- Categoría -->
+                <TextView
+                    android:id="@+id/label_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_category"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnSurface"
+                    android:labelFor="@id/spinner_category" />
+
+                <Spinner
+                    android:id="@+id/spinner_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/bg_spinner_light"
+                    android:popupBackground="@color/azul_medianoche"
+                    android:padding="8dp"
+                    android:textAlignment="center" />
+
+                <!-- Título -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_title"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnSurface"
+                    android:labelFor="@id/et_title" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_marginBottom="12dp"
+                    android:hint="@string/hint_title">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapSentences"
+                        android:imeOptions="actionNext"
+                        android:autofillHints="name"
+                        android:textColor="?attr/colorOnSurface"
+                        android:hint="@string/hint_title" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Descripción -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_description"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnSurface"
+                    android:labelFor="@id/et_description" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_marginBottom="12dp"
+                    android:hint="@string/hint_description">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:imeOptions="actionDone"
+                        android:minLines="3"
+                        android:autofillHints="none"
+                        android:textColor="?attr/colorOnSurface"
+                        android:hint="@string/hint_description" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Fecha límite -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_due"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnSurface"
+                    android:labelFor="@id/btn_due_at" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_due_at"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/select_due"
+                    android:layout_marginBottom="12dp"
+                    android:contentDescription="@string/select_due"
+                    app:iconGravity="textStart"
+                    style="@style/Widget.MaterialComponents.Button" />
+
+                <!-- Dificultad -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_difficulty"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnSurface"
+                    android:labelFor="@id/spinner_difficulty" />
+
+                <Spinner
+                    android:id="@+id/spinner_difficulty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/bg_spinner_light"
+                    android:popupBackground="@color/azul_medianoche"
+                    android:padding="8dp"
+                    android:textAlignment="center" />
+
+                <!-- Grupo de racha -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_streak_group"
+                    android:textStyle="bold"
+                    android:textColor="?attr/colorOnSurface"
+                    android:labelFor="@id/et_streak_group" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_marginBottom="16dp"
+                    android:hint="@string/hint_streak_group">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_streak_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:autofillHints="username"
+                        android:textColor="?attr/colorOnSurface"
+                        android:hint="@string/hint_streak_group" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Botón de envío -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_create_mission"
+                    android:contentDescription="@string/btn_create_mission"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:layout_marginTop="4dp" />
+
+                <!-- Progreso -->
+                <ProgressBar
+                    android:id="@+id/progress"
+                    style="?android:attr/progressBarStyleLarge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="16dp"
+                    android:indeterminateTint="?attr/colorPrimary" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/app/src/main/res/drawable/bgtest.xml">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/app/src/main/res/drawable/bgtest.xml" />
+              <option name="updatedContent" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#10;&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; android:shape=&quot;rectangle&quot;&gt;&#10;    &lt;!-- Fondo sutil usando la paleta del proyecto --&gt;&#10;    &lt;gradient&#10;        android:startColor=&quot;@color/azul_abismo&quot;&#10;        android:endColor=&quot;@color/azul_medianoche&quot;&#10;        android:angle=&quot;270&quot; /&gt;&#10;&lt;/shape&gt;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/drawable/test_bg.xml">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/app/src/main/res/drawable/test_bg.xml" />
+              <option name="updatedContent" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#10;&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot; android:shape=&quot;rectangle&quot;&gt;&#10;    &lt;!-- Fondo sutil usando la paleta del proyecto (test_bg solicitado) --&gt;&#10;    &lt;gradient&#10;        android:startColor=&quot;@color/azul_abismo&quot;&#10;        android:endColor=&quot;@color/azul_medianoche&quot;&#10;        android:angle=&quot;270&quot; /&gt;&#10;&lt;/shape&gt;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

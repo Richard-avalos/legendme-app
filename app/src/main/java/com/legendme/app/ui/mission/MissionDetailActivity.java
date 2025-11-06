@@ -34,6 +34,9 @@ import com.legendme.app.domain.model.Mission;
 import com.legendme.app.network.ApiClient;
 import com.legendme.app.network.MissionService;
 
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -77,120 +80,141 @@ public class MissionDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mission_detail);
+        // Proteger inicialización completa para capturar errores que causen cierre sin log
+        try {
+            setContentView(R.layout.activity_mission_detail);
 
-        // Toolbar (match dashboard)
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        if (toolbar != null) {
-            setSupportActionBar(toolbar);
-            if (getSupportActionBar() != null) {
-                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                getSupportActionBar().setTitle(R.string.missions_title);
-            }
-            toolbar.setNavigationOnClickListener(v -> finish());
-        }
-
-        progress = findViewById(R.id.progress);
-        tvTitle = findViewById(R.id.tvTitle);
-        tvDescription = findViewById(R.id.tvDescription);
-        tvMeta = findViewById(R.id.tvMeta);
-        tvDates = findViewById(R.id.tvDates);
-        tvState = findViewById(R.id.tvState);
-
-        // Enlazar nuevas vistas
-        chipStatus = findViewById(R.id.chipStatus);
-        linearProgress = findViewById(R.id.linearProgress);
-        tvProgressPercent = findViewById(R.id.tvProgressPercent);
-        tvXp = findViewById(R.id.tvXp); // nueva vista para XP
-        btnEditMission = findViewById(R.id.btnEditMission);
-        btnStartMission = findViewById(R.id.btnStartMission); // enlazado
-        btnPauseMission = findViewById(R.id.btnPauseMission); // enlazado
-        btnCancelMission = findViewById(R.id.btnCancelMission);
-        btnCompleteMission = findViewById(R.id.btnCompleteMission);
-        btnOptions = findViewById(R.id.btnOptions); // botón de menú desplegable
-
-        // Configurar el botón de opciones para mostrar menú desplegable
-        if (btnOptions != null) {
-            btnOptions.setOnClickListener(v -> showOptionsMenu(v));
-        }
-
-        // listener del FAB: dispara la misma acción que el botón iniciar
-        if (fabStartMission != null) {
-            fabStartMission.setOnClickListener(v -> {
-                fabStartMission.setEnabled(false);
-                if (btnStartMission != null) btnStartMission.setEnabled(false);
-                performStartMission();
-            });
-        }
-
-        if (btnCompleteMission != null) {
-            btnCompleteMission.setOnClickListener(v -> {
-                btnCompleteMission.setEnabled(false);
-                performCompleteMission();
-            });
-        }
-
-
-        // click para pausar misión
-        if (btnPauseMission != null) {
-            btnPauseMission.setOnClickListener(v -> {
-                // desactivar para evitar múltiples clicks
-                btnPauseMission.setEnabled(false);
-                if (btnStartMission != null) btnStartMission.setEnabled(false);
-                performPauseMission();
-            });
-        }
-
-        // click para iniciar misión
-        if (btnStartMission != null) {
-            btnStartMission.setOnClickListener(v -> {
-                // desactivar para evitar múltiples clicks
-                btnStartMission.setEnabled(false);
-                performStartMission();
-            });
-        }
-
-        if (btnCancelMission != null) {
-            btnCancelMission.setOnClickListener(v -> {
-                btnCancelMission.setEnabled(false);
-                performCancelMission();
-            });
-        }
-
-        // Recuperar ID de la Intent y token de SharedPreferences
-        String id = getIntent().getStringExtra(EXTRA_MISSION_ID);
-        if (id == null || id.isEmpty()) {
-            Toast.makeText(this, "ID de misión inválido", Toast.LENGTH_SHORT).show();
-            finish();
-            return;
-        }
-        missionId = id;
-
-        SharedPreferences prefs = getSharedPreferences(PREFS, MODE_PRIVATE);
-        String token = prefs.getString("accessToken", null);
-        if (token == null || token.isEmpty()) {
-            Toast.makeText(this, "No hay token de acceso disponible", Toast.LENGTH_SHORT).show();
-            finish();
-            return;
-        }
-        accessToken = token;
-
-        // setear click del botón editar (si existe)
-        if (btnEditMission != null) {
-            btnEditMission.setOnClickListener(v -> {
-                try {
-                    android.content.Intent it = new android.content.Intent(MissionDetailActivity.this, MissionEditActivity.class);
-                    it.putExtra(EXTRA_MISSION_ID, missionId);
-                    startActivityForResult(it, REQ_EDIT);
-                } catch (Exception e) {
-                    Log.w(TAG, "No se pudo lanzar edición: " + e.getMessage());
-                    Toast.makeText(MissionDetailActivity.this, "No se puede abrir editor", Toast.LENGTH_SHORT).show();
+            // Toolbar (match dashboard)
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            if (toolbar != null) {
+                setSupportActionBar(toolbar);
+                if (getSupportActionBar() != null) {
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                    getSupportActionBar().setTitle(R.string.missions_title);
                 }
-            });
-        }
+                toolbar.setNavigationOnClickListener(v -> finish());
+            }
 
-        // Cargar datos iniciales
-        loadMission(missionId, accessToken);
+            progress = findViewById(R.id.progress);
+            tvTitle = findViewById(R.id.tvTitle);
+            tvDescription = findViewById(R.id.tvDescription);
+            tvMeta = findViewById(R.id.tvMeta);
+            tvDates = findViewById(R.id.tvDates);
+            tvState = findViewById(R.id.tvState);
+
+            // Enlazar nuevas vistas
+            chipStatus = findViewById(R.id.chipStatus);
+            linearProgress = findViewById(R.id.linearProgress);
+            tvProgressPercent = findViewById(R.id.tvProgressPercent);
+            tvXp = findViewById(R.id.tvXp); // nueva vista para XP
+            btnEditMission = findViewById(R.id.btnEditMission);
+            btnStartMission = findViewById(R.id.btnStartMission); // enlazado
+            btnPauseMission = findViewById(R.id.btnPauseMission); // enlazado
+            btnCancelMission = findViewById(R.id.btnCancelMission);
+            btnCompleteMission = findViewById(R.id.btnCompleteMission);
+            btnOptions = findViewById(R.id.btnOptions); // botón de menú desplegable
+
+            // Configurar el botón de opciones para mostrar menú desplegable
+            if (btnOptions != null) {
+                btnOptions.setOnClickListener(v -> showOptionsMenu(v));
+            }
+
+            // listener del FAB: dispara la misma acción que el botón iniciar
+            if (fabStartMission != null) {
+                fabStartMission.setOnClickListener(v -> {
+                    fabStartMission.setEnabled(false);
+                    if (btnStartMission != null) btnStartMission.setEnabled(false);
+                    performStartMission();
+                });
+            }
+
+            if (btnCompleteMission != null) {
+                btnCompleteMission.setOnClickListener(v -> {
+                    btnCompleteMission.setEnabled(false);
+                    performCompleteMission();
+                });
+            }
+
+
+            // click para pausar misión
+            if (btnPauseMission != null) {
+                btnPauseMission.setOnClickListener(v -> {
+                    // desactivar para evitar múltiples clicks
+                    btnPauseMission.setEnabled(false);
+                    if (btnStartMission != null) btnStartMission.setEnabled(false);
+                    performPauseMission();
+                });
+            }
+
+            // click para iniciar misión
+            if (btnStartMission != null) {
+                btnStartMission.setOnClickListener(v -> {
+                    // desactivar para evitar múltiples clicks
+                    btnStartMission.setEnabled(false);
+                    performStartMission();
+                });
+            }
+
+            if (btnCancelMission != null) {
+                btnCancelMission.setOnClickListener(v -> {
+                    btnCancelMission.setEnabled(false);
+                    performCancelMission();
+                });
+            }
+
+            // Recuperar ID de la Intent y token de SharedPreferences
+            String id = getIntent().getStringExtra(EXTRA_MISSION_ID);
+            if (id == null || id.isEmpty()) {
+                Toast.makeText(this, "ID de misión inválido", Toast.LENGTH_SHORT).show();
+                finish();
+                return;
+            }
+            missionId = id;
+
+            SharedPreferences prefs = getSharedPreferences(PREFS, MODE_PRIVATE);
+            String token = prefs.getString("accessToken", null);
+            if (token == null || token.isEmpty()) {
+                Toast.makeText(this, "No hay token de acceso disponible", Toast.LENGTH_SHORT).show();
+                finish();
+                return;
+            }
+            accessToken = token;
+
+            // setear click del botón editar (si existe)
+            if (btnEditMission != null) {
+                btnEditMission.setOnClickListener(v -> {
+                    try {
+                        android.content.Intent it = new android.content.Intent(MissionDetailActivity.this, MissionEditActivity.class);
+                        it.putExtra(EXTRA_MISSION_ID, missionId);
+                        startActivityForResult(it, REQ_EDIT);
+                    } catch (Exception e) {
+                        Log.w(TAG, "No se pudo lanzar edición: " + e.getMessage());
+                        Toast.makeText(MissionDetailActivity.this, "No se puede abrir editor", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+            // Cargar datos iniciales
+            loadMission(missionId, accessToken);
+        } catch (Exception e) {
+            Log.e(TAG, "Error en onCreate", e);
+            try {
+                StringWriter sw = new StringWriter();
+                e.printStackTrace(new PrintWriter(sw));
+                String trace = sw.toString();
+                FileOutputStream fos = openFileOutput("last_crash.txt", MODE_PRIVATE);
+                fos.write(trace.getBytes());
+                fos.close();
+            } catch (Exception ex) {
+                Log.e(TAG, "No se pudo escribir el crash log: " + ex.getMessage());
+            }
+            Toast.makeText(this, "Se produjo un error al iniciar (ver last_crash.txt)", Toast.LENGTH_LONG).show();
+            if (!DEBUG_SHOW_STATE) finish();
+            else {
+                // dejar la activity abierta en modo debug pero con vistas ocultas para evitar NPEs posteriores
+                if (progress != null) progress.setVisibility(View.GONE);
+            }
+        }
     }
 
     /**
@@ -502,6 +526,7 @@ public class MissionDetailActivity extends AppCompatActivity {
             case "PENDING":
                 return 0;
             case "IN_PROGRESS":
+                return 50;
             case "PAUSED":
                 // intentar calcular basado en startedAt/dueAt
                 if (m.startedAt != null && m.dueAt != null && !m.startedAt.isEmpty() && !m.dueAt.isEmpty()) {
@@ -640,7 +665,7 @@ public class MissionDetailActivity extends AppCompatActivity {
                         btnStartMission.setEnabled(true);
                         btnCancelMission.setVisibility(View.VISIBLE);
                         btnCancelMission.setEnabled(true);
-                        btnCompleteMission.setVisibility(View.GONE);
+                        btnCompleteMission.setVisibility(View.VISIBLE);
                         btnCompleteMission.setEnabled(false);
                         break;
                     case "COMPLETED":

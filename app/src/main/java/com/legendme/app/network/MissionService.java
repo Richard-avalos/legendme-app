@@ -3,6 +3,7 @@ package com.legendme.app.network;
 import com.legendme.app.domain.model.Mission;
 import com.legendme.app.domain.model.Category;
 import com.legendme.app.domain.model.MissionUpdateRequest;
+import com.legendme.app.domain.model.MissionCreateRequest;
 
 import java.util.List;
 
@@ -76,5 +77,12 @@ public interface MissionService {
             @Header("Idempotency-Key") String idempotencyKey,
             @Path("id") String id,
             @Body Object empty
+    );
+
+    // Nuevo: crear misión (POST /missions/create)
+    @POST("/missions/create")
+    Call<Mission> createMission(
+            @Header("Authorization") String bearerToken,
+            @Body MissionCreateRequest body
     );
 }

@@ -1,6 +1,7 @@
 package com.legendme.app.ui.dashboard;
 
 import android.content.SharedPreferences;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -8,13 +9,14 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.core.view.GravityCompat;
-import com.google.android.material.navigation.NavigationView;
 
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 import com.legendme.app.R;
 import com.legendme.app.domain.model.Mission;
 import com.legendme.app.domain.model.UserDetail;
@@ -42,6 +44,7 @@ public class DashboardActivity extends AppCompatActivity {
     private SharedPreferences prefs;
     private static final String PREFS = "legendme_auth";
     private static final String INTERNAL_TOKEN = "bGVnZW5kbWUtYmFja2VuZC1taWNyb3NlcnZpY2Vz";
+    private static final int REQUEST_CREATE = 1001;
 
     @Override
     protected void onCreate(@Nullable Bundle b) {
@@ -50,7 +53,13 @@ public class DashboardActivity extends AppCompatActivity {
 
         // ------- UI -------
         toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        // Evita crash si el tema ya provee ActionBar: comprueba windowActionBar
+        TypedArray ta = obtainStyledAttributes(new int[]{android.R.attr.windowActionBar});
+        boolean hasWindowActionBar = ta.getBoolean(0, false);
+        ta.recycle();
+        if (!hasWindowActionBar) {
+            setSupportActionBar(toolbar);
+        }
         toolbar.setOnMenuItemClickListener(this::onMenuItemClick);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -104,7 +113,30 @@ public class DashboardActivity extends AppCompatActivity {
         fetchUserDetail(prefs.getString("userId", null));
 
         // 2) Misiones
-        fetchMissions(prefs.getString("accessToken", null));
+        String accessToken = prefs.getString("accessToken", null);
+        fetchMissions(accessToken);
+
+        // 3) FloatingActionButton: crear misión
+        FloatingActionButton fab = findViewById(R.id.fab_create_mission);
+        if (fab != null) {
+            fab.setOnClickListener(v -> {
+                // Abre la Activity de creación en lugar de enviar datos fijos
+                startActivityForResult(
+                        new android.content.Intent(DashboardActivity.this, com.legendme.app.ui.mission.MissionCreateActivity.class),
+                        REQUEST_CREATE
+                );
+            });
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable android.content.Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CREATE && resultCode == RESULT_OK) {
+            // refresca misiones
+            String accessToken = prefs.getString("accessToken", null);
+            fetchMissions(accessToken);
+        }
     }
 
     private boolean onMenuItemClick(MenuItem item) {
